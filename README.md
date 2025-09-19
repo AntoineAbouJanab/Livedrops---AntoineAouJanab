@@ -1,5 +1,9 @@
 # LiveDrop – System Design Assignment
 
+## Architecture Diagram
+You can view the high-level system architecture here:  
+[Excalidraw Diagram](https://excalidraw.com/#json=WfUjrnsMZtuNmCvjt5YE7,6XMCtBJk9zeZY00H6qNxCQ)
+
 ## Functional Requirements Coverage
 - **Following/unfollowing creators** → handled by FollowSvc + Postgres + Redis cache.  
 - **Listing followers/following with pagination** → supported by FollowSvc + Redis for fast lookups.  
