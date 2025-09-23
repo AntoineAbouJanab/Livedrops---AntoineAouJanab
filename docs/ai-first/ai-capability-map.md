@@ -7,7 +7,7 @@
 
 ## Selected Pilots (This Sprint)
 
-| Capability | User intent | Inputs (now) | Risk* | p95 (ms)** | Est. cost / action | Fallback |
+| Capability | Intent (user) | Inputs (this sprint) | Risk* | p95 (ms)** | Est. cost / action | Fallback |
 |---|---|---:|---:|---:|---:|---|
 | **Support assistant (RAG + order status)** | “Answer my question / check my order.” | FAQ / Policies MD, Order-Status API | 2 | 1200 | **$0.09–$0.11** | Hand-off to human; canned replies |
 | **Semantic typeahead (search suggest)** | “Help me find products faster.” | SKU titles, tags, categories; Redis | 2 | 300 | **$0.018–$0.022** | Prefix-only keyword suggest |
@@ -32,7 +32,7 @@
 
 ## Near-Term Backlog
 
-| Capability | Why / impact | Inputs | Risk* | p95 (ms)** | Cost / action | Fallback |
+| Capability | Intent (user) | Inputs (this sprint) | Risk* | p95 (ms)** | Cost / action | Fallback |
 |---|---|---|---:|---:|---:|---|
 | **Return-reason classifier** | Cleaner flows; policy routing | Seed reasons, policy text | 3 | 250 | $0.003–$0.006 | Default generic flow |
 | **PDP Q&A (specs/reviews RAG)** | Reduce drop-offs on PDP | Specs, Q&A snippets | 3 | 900 | $0.05–$0.10 | Link to specs section |
