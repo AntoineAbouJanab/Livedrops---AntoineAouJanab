@@ -157,7 +157,7 @@
 
 
 ### Q20: What steps should a seller take to prevent overselling and cancellations?
-**Expected retrieval context:** Document 9: Shoplite Inventory Management for Sellers  
+**Expected retrieval context:** Document 9: Shoplite Inventory Management for Sellers, Document 8: Shoplite Seller Account Setup and Management 
 **Authoritative answer:** To prevent overselling and order cancellations, sellers should use Shoplite’s **real-time inventory synchronization tools**. The Seller Dashboard allows low-stock alerts to be configured, ensuring listings are updated as stock decreases. For higher accuracy, sellers can integrate their ERP or warehouse systems with Shoplite via **API** to update stock levels automatically. Accurate product descriptions and stock buffers for high-demand items also reduce the risk of cancellations. Repeated overselling or inaccurate inventory may result in penalties such as reduced visibility or account suspension, so sellers are encouraged to monitor stock closely and act on alerts immediately.  
 **Required keywords in LLM response:** ["real-time inventory synchronization", "low-stock alerts", "API integration", "prevent overselling"]  
 **Forbidden content:** ["manual updates only with no alerts", "overselling has no consequences", "Shoplite does not track inventory"]  
