@@ -58,7 +58,7 @@
 ---
 
 
-### Q08: How can I contact customer support and what are the response times?
+### Q08: How can I contact customer support and what are the response times of the support?
 **Expected retrieval context:** Document 11: Shoplite Customer Support Procedures  
 **Authoritative answer:** Shoplite offers customer support through multiple channels including **live chat, email, and a 24/7 help center** available via the website and mobile app. For urgent issues, buyers and sellers can also request a callback from a support representative. When submitting a support ticket, users must provide details such as their order number, account email, and a short description of the problem. Tickets are prioritized based on severity: urgent cases like failed payments, lost packages, or account security issues are usually handled within **2–4 hours**, while standard inquiries are typically resolved within **24 hours**. Users can track ticket progress in the “My Support” dashboard and rate their experience after resolution.  
 **Required keywords in LLM response:** ["live chat", "email", "24/7 help center", "2–4 hours", "24 hours"]  
