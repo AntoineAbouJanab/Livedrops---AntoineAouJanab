@@ -43,7 +43,7 @@ refusal_no_context:
   goal: |
     Prevent hallucinations by refusing when the context lacks relevant info and guide the user on what to provide next.
   context_guidelines:
-    - "Be brief and clear about what’s missing. Offer ONE targeted follow-up question to unblock progress."
+    - "Be brief and clear about what’s missing."
   response_format: |
     Answer: I'm sorry—there isn't enough information in the provided documentation to answer that. Could you clarify <one specific missing detail>?
     Sources: []
