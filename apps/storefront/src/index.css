@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+
+/* Futuristic dark background */
+body {
+  background-image:
+    radial-gradient(1200px 600px at 20% -10%, rgba(34,211,238,0.15), transparent),
+    radial-gradient(800px 400px at 80% 10%, rgba(99,102,241,0.12), transparent),
+    linear-gradient(180deg, #020617 0%, #0b1020 100%);
+}
+
+/* Focus ring */
+*:focus { outline: 2px solid #22d3ee; outline-offset: 2px; }

@@ -1,0 +1,23 @@
+[
+  { "id": "sku-001", "title": "Aero Water Bottle", "price": 14.99, "image": "/logo.svg", "tags": ["outdoor","fitness"], "stockQty": 32 },
+  { "id": "sku-002", "title": "Trail Running Socks", "price": 9.99, "image": "/logo.svg", "tags": ["fitness","apparel"], "stockQty": 120 },
+  { "id": "sku-003", "title": "Compact Travel Towel", "price": 12.5, "image": "/logo.svg", "tags": ["travel","outdoor"], "stockQty": 80 },
+  { "id": "sku-004", "title": "Insulated Mug 12oz", "price": 19.0, "image": "/logo.svg", "tags": ["kitchen","outdoor"], "stockQty": 45 },
+  { "id": "sku-005", "title": "Eco Bamboo Toothbrush", "price": 4.99, "image": "/logo.svg", "tags": ["personal","eco"], "stockQty": 200 },
+  { "id": "sku-006", "title": "USB-C Cable 2m", "price": 8.99, "image": "/logo.svg", "tags": ["tech","accessory"], "stockQty": 150 },
+  { "id": "sku-007", "title": "Wireless Mouse Mini", "price": 24.99, "image": "/logo.svg", "tags": ["tech"], "stockQty": 60 },
+  { "id": "sku-008", "title": "Notebook A5 Dotted", "price": 7.5, "image": "/logo.svg", "tags": ["office","stationery"], "stockQty": 90 },
+  { "id": "sku-009", "title": "Gel Ink Pens (4-pack)", "price": 5.5, "image": "/logo.svg", "tags": ["office","stationery"], "stockQty": 110 },
+  { "id": "sku-010", "title": "LED Desk Lamp", "price": 29.99, "image": "/logo.svg", "tags": ["office","lighting"], "stockQty": 35 },
+  { "id": "sku-011", "title": "Yoga Strap Cotton", "price": 10.0, "image": "/logo.svg", "tags": ["fitness","yoga"], "stockQty": 70 },
+  { "id": "sku-012", "title": "Resistance Bands Set", "price": 22.0, "image": "/logo.svg", "tags": ["fitness"], "stockQty": 55 },
+  { "id": "sku-013", "title": "Microfiber Cleaning Cloths", "price": 6.0, "image": "/logo.svg", "tags": ["home","cleaning"], "stockQty": 140 },
+  { "id": "sku-014", "title": "Portable Blender Cup", "price": 34.0, "image": "/logo.svg", "tags": ["kitchen","fitness"], "stockQty": 28 },
+  { "id": "sku-015", "title": "Travel Adapter Universal", "price": 21.0, "image": "/logo.svg", "tags": ["travel","tech"], "stockQty": 65 },
+  { "id": "sku-016", "title": "Folding Cutlery Set", "price": 9.5, "image": "/logo.svg", "tags": ["outdoor","kitchen"], "stockQty": 85 },
+  { "id": "sku-017", "title": "Camping Lantern", "price": 26.0, "image": "/logo.svg", "tags": ["outdoor","lighting"], "stockQty": 40 },
+  { "id": "sku-018", "title": "Insulated Lunch Bag", "price": 18.0, "image": "/logo.svg", "tags": ["kitchen","travel"], "stockQty": 50 },
+  { "id": "sku-019", "title": "Cable Organizer Pouch", "price": 11.0, "image": "/logo.svg", "tags": ["tech","travel"], "stockQty": 100 },
+  { "id": "sku-020", "title": "Stainless Steel Straw Set", "price": 6.5, "image": "/logo.svg", "tags": ["eco","kitchen"], "stockQty": 160 }
+]
+
