@@ -35,7 +35,7 @@
 
 12) Assistant engine and prompt template
 "In src/assistant/prompt.txt, write a short instruction describing constraints: only answer using ground-truth.json and getOrderStatus(), refuse out-of-scope, mask PII (show last 4), always append citation [Qxx], detect order ids via /[A-Z0-9]{10,}/."
-"In src/assistant/ground-truth.json, include 20 Q&A items: { qid:'Q01', category:'Returns'|'Shipping'|'Order'|..., question, answer }."
+"In docs/ground-truth.json, include 20 Q&A items: { id:'Policy1.1', category:'Returns'|'Shipping'|'Order'|..., question, answer }."
 "In src/assistant/engine.ts, implement askSupport(query) that: (1) detects order ids, calls getOrderStatus(id), formats 'Order ****1234 status: ...' with carrier/ETA when Shipped or later, citing the 'Order' Qid; else (2) scores ground-truth items by keyword overlap on question/answer, selects best above a confidence threshold ~0.35; else refuses with a generic message. Export types and pure helpers as needed. Add engine.test.ts to cover the three test cases from the assignment."
 
 13) Pages
@@ -53,5 +53,7 @@
 
 16) Testing pass
 "Use Vitest + @testing-library/react to run unit tests for atoms, molecules, organisms, and assistant engine. Ensure jsdom environment and happy path tests pass." 
+
+
 
 

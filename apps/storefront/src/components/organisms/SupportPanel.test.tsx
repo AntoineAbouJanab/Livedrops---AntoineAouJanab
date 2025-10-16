@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event'
 import { SupportPanel } from './SupportPanel'
 
 vi.mock('../../assistant/engine', () => ({
-  askSupport: vi.fn(async (q: string) => ({ text: `Echo: ${q} [Q01]` })),
+  askSupport: vi.fn(async (q: string) => ({ text: `Echo: ${q} [Account1.1]` })),
 }))
 
 describe('SupportPanel', () => {
@@ -23,7 +23,7 @@ describe('SupportPanel', () => {
     await user.click(screen.getByRole('button', { name: /send/i }))
 
     await screen.findByText(/echo: where is my order/i)
-    expect(screen.getByText(/\[Q01\]/)).toBeInTheDocument()
+    expect(screen.getByText(/\[Account1\.1\]/)).toBeInTheDocument()
   })
 })
 

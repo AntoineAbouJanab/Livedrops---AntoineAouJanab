@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { askSupport } from '../../assistant/engine'
+import { useUser } from '../../lib/user'
 import { Input } from '../atoms/Input'
 import { Button } from '../atoms/Button'
 
@@ -7,8 +8,11 @@ export const SupportPanel: React.FC = () => {
   const [open, setOpen] = useState(false)
   const [q, setQ] = useState('')
   const [a, setA] = useState<string>('')
+  const [loading, setLoading] = useState(false)
+  const [slow, setSlow] = useState(false)
   const panelRef = useRef<HTMLDivElement>(null)
   const firstRef = useRef<HTMLInputElement>(null)
+  const customer = useUser(s => s.customer)
 
   useEffect(() => { if (open) firstRef.current?.focus() }, [open])
   useEffect(() => {
@@ -30,8 +34,17 @@ export const SupportPanel: React.FC = () => {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
-    const res = await askSupport(q)
-    setA(res.text)
+    setLoading(true)
+    setSlow(false)
+    setA('…')
+    const slowTimer = setTimeout(() => setSlow(true), 1500)
+    try {
+      const res = await askSupport(q, customer?.email || undefined)
+      setA(res.text)
+    } finally {
+      clearTimeout(slowTimer)
+      setLoading(false)
+    }
   }
 
   return (
@@ -46,10 +59,13 @@ export const SupportPanel: React.FC = () => {
               <button onClick={() => setOpen(false)} aria-label="Close support">✕</button>
             </div>
             <form onSubmit={onSubmit} className="flex gap-2 items-center">
-              <Input ref={firstRef as any} value={q} onChange={e => setQ(e.target.value)} placeholder="Type your question or order id" aria-label="Support question" />
-              <Button type="submit">Send</Button>
-            </form>
-            <div className="text-sm whitespace-pre-wrap bg-slate-900/60 border border-slate-800 rounded p-3 min-h-[6rem]" aria-live="polite">{a}</div>
+              <Input ref={firstRef as any} value={q} onChange={e => setQ(e.target.value)} placeholder="Type your question or order id" aria-label="Support question" disabled={loading} />
+              <Button type="submit" disabled={loading}>{loading ? 'Sending…' : 'Send'}</Button>
+              </form>
+            <div className="text-sm whitespace-pre-wrap bg-slate-900/60 border border-slate-800 rounded p-3 min-h-[6rem]" aria-live="polite">
+              {a}
+              {slow && loading && '\nTaking a bit longer than usual…'}
+            </div>
           </div>
         </div>
       )}

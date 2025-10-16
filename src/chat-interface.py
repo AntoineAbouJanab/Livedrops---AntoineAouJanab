@@ -37,6 +37,17 @@ def call_ping(base, prompt, max_new_tokens=80):
     r.raise_for_status()
     return _safe_json(r)
 
+def call_generate(base, prompt, max_tokens=200):
+    payload = {"prompt": prompt, "max_tokens": max_tokens}
+    r = requests.post(
+        f"{base}/generate",
+        json=payload,
+        timeout=120,
+        headers={"ngrok-skip-browser-warning": "1"}
+    )
+    r.raise_for_status()
+    return _safe_json(r)
+
 def _parse_answer(resp, elapsed_fallback=None):
     """
     Accepts both:
@@ -72,6 +83,7 @@ def main():
     parser.add_argument("--base", help="Base URL for the API (e.g., https://xxx.ngrok-free.app)")
     parser.add_argument("--max-new-tokens", type=int, default=160, help="Max new tokens for answers")
     parser.add_argument("--ping", action="store_true", help="Use /ping (no RAG) instead of /chat")
+    parser.add_argument("--generate", action="store_true", help="Use /generate (plain text completion) instead of /chat")
     parser.add_argument("--raw", action="store_true", help="Also print raw JSON response")
     args = parser.parse_args()
 
@@ -98,7 +110,15 @@ def main():
             if not q:
                 continue
 
-            if args.ping:
+            if args.generate:
+                print("[Calling /generate ...]", flush=True)
+                t0 = time.time()
+                try:
+                    resp = call_generate(base, q, max_tokens=min(args.max_new_tokens, 500))
+                except requests.exceptions.RequestException as e:
+                    print(f"[error] {e}")
+                    continue
+            elif args.ping:
                 print("[Calling LLM...]", flush=True)
                 t0 = time.time()
                 try:
@@ -117,7 +137,15 @@ def main():
                     continue
 
             elapsed = time.time() - t0
-            answer, sources, latency = _parse_answer(resp, elapsed_fallback=round(elapsed, 3))
+            # try /generate shape first
+            if args.generate:
+                # accept {text} or {output}
+                txt = resp.get('text') if isinstance(resp, dict) else None
+                if not txt and isinstance(resp, dict):
+                    txt = resp.get('output')
+                answer, sources, latency = (txt or ''), [], round(elapsed, 3)
+            else:
+                answer, sources, latency = _parse_answer(resp, elapsed_fallback=round(elapsed, 3))
 
             if args.raw:
                 print("\n[raw]", json.dumps(resp, ensure_ascii=False))

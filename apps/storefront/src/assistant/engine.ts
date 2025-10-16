@@ -1,45 +1,22 @@
-import qa from './ground-truth.json'
-import { getOrderStatus } from '../lib/api'
-
 type Answer = { text: string }
 
-const ORDER_RE = /\b[A-Z0-9]{10,}\b/g
-const ORDER_QID = qa.find((item) => item.category.toLowerCase() === 'order')?.qid ?? 'Q05'
-
-function score(query: string, text: string) {
-  const q = query.toLowerCase().split(/\W+/).filter(Boolean)
-  const t = text.toLowerCase()
-  let s = 0
-  for (const tok of q) if (t.includes(tok)) s += 1
-  return s / Math.max(1, q.length)
+function apiBase() {
+  const w: any = typeof window !== 'undefined' ? (window as any) : {}
+  return w.__API_BASE__ || (import.meta as any)?.env?.VITE_API_BASE_URL || ''
 }
 
-function cite(qid: string) {
-  return `[${qid}]`
-}
-
-function maskId(id: string) {
-  return '••••' + id.slice(-4)
-}
-
-export async function askSupport(query: string): Promise<Answer> {
-  const orderIds = query.toUpperCase().match(ORDER_RE) || []
-  if (orderIds.length) {
-    const orderId = orderIds[0]!
-    const info = await getOrderStatus(orderId)
-    if (info) {
-      const base = `Order ${maskId(orderId)} status: ${info.status}.`
-      const extra = (info.status === 'Shipped' || info.status === 'Delivered') ? ` Carrier: ${info.carrier ?? 'TBD'}. ETA: ${info.etaDays ?? 'TBD'} days.` : ''
-      return { text: base + extra + ' ' + cite(ORDER_QID) }
-    }
-  }
-
-  const ranked = qa
-    .map(item => ({ item, s: Math.max(score(query, item.question), score(query, item.answer)) }))
-    .sort((a,b) => b.s - a.s)
-  const best = ranked[0]
-  if (!best || best.s < 0.35) {
-    return { text: "Sorry, I can't help with that. I can answer store policies and order status questions." }
-  }
-  return { text: `${best.item.answer} ${cite(best.item.qid)}` }
+export async function askSupport(query: string, email?: string): Promise<Answer> {
+  // Always use the backend assistant so it can apply prompts.yaml
+  try {
+    const base = apiBase()
+    const url = `${base ? base.replace(/\/$/, '') : ''}/api/assistant/message`
+    const payload: any = { message: query }
+    if (email) payload.email = email
+    const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+    if (!res.ok) throw new Error('bad_response')
+    const data: any = await res.json()
+    if (typeof data?.reply === 'string') return { text: data.reply }
+  } catch {}
+  // Fallback if API unavailable
+  return { text: "Sorry, I can't help with that right now. Please try again in a moment." }
 }

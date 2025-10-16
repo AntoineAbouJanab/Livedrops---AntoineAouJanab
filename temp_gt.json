@@ -20,3 +20,4 @@
   { "qid": "Q19", "category": "Reviews", "question": "How are product reviews verified and can sellers contest them?", "answer": "Only verified purchasers can review. Sellers can contest reviews through the Seller Dashboard and the trust and safety team evaluates the case." },
   { "qid": "Q20", "category": "Inventory", "question": "What steps should a seller take to prevent overselling and cancellations?", "answer": "Sellers should use real-time inventory synchronization, low-stock alerts, and API integration to maintain accurate stock and prevent overselling." }
 ]
+
